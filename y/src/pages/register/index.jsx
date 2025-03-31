@@ -1,7 +1,7 @@
 import { useState } from "react"; 
 import { Link } from "react-router-dom"; 
-import { auth } from "../../servicos/firebaseConfig";
-import './styles.css'
+import { auth, database } from "../../servicos/firebaseConfig";
+import { ref, set } from "firebase/database";
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import logo from "../../assets/logo.svg";
 
@@ -9,6 +9,8 @@ export function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [cpfMessage, setCpfMessage] = useState('');
 
   const [createUserWithEmailAndPassword, user, loading, error] = 
     useCreateUserWithEmailAndPassword(auth);
@@ -20,62 +22,75 @@ export function Register() {
       alert("As senhas não coincidem!");
       return;
     }
-    createUserWithEmailAndPassword(email, password);
+
+    if (cpfMessage !== "CPF válido!") {
+      alert("CPF inválido! Corrija antes de continuar.");
+      return;
+    }
+
+    createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        const userId = userCredential.user.uid;
+        salvarCPF(userId, cpf); // Chama a função para salvar CPF no banco
+      })
+      .catch((error) => {
+        console.error("Erro ao registrar:", error);
+      });
   }
 
-  if (loading) {
-    return <p>Carregando...</p>;
+  function salvarCPF(userId, cpf) {
+    set(ref(database, `usuarios/${userId}`), {
+      cpf: cpf
+    })
+      .then(() => {
+        alert("Usuário cadastrado e CPF salvo com sucesso!");
+      })
+      .catch((error) => {
+        console.error("Erro ao salvar CPF:", error);
+      });
   }
 
-  function formatarCPF(campo) {
-    let cpf = campo.value.replace(/\D/g, ""); 
+  function formatarCPF(value) {
+    let cpf = value.replace(/\D/g, ""); // Remove tudo que não for número
     cpf = cpf.replace(/^(\d{3})(\d)/, "$1.$2");
     cpf = cpf.replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
     cpf = cpf.replace(/\.(\d{3})(\d)/, ".$1-$2");
-    campo.value = cpf;
-    
-}
+    return cpf;
+  }
 
-function validarCPF() {
-    let cpf = document.getElementById("cpf").value.replace(/\D/g, ""); 
-    let resultado = document.getElementById("resultado");
-
+  function validarCPF(value) {
+    let cpf = value.replace(/\D/g, ""); // Remove não numéricos
+  
     if (cpf.length !== 11) {
-        resultado.textContent = "CPF inválido!";
-        resultado.style.color = "red";
-        return false;
+      setCpfMessage("CPF inválido!");
+      return false;
     }
-
-   
+  
     let soma = 0, resto;
     for (let i = 1; i <= 9; i++) {
-        soma += parseInt(cpf[i - 1]) * (11 - i);
+      soma += parseInt(cpf[i - 1]) * (11 - i);
     }
     resto = (soma * 10) % 11;
     if (resto === 10 || resto === 11) resto = 0;
     if (resto !== parseInt(cpf[9])) {
-        resultado.textContent = "CPF inválido!";
-        resultado.style.color = "red";
-        return false;
+      setCpfMessage("CPF inválido!");
+      return false;
     }
-
+  
     soma = 0;
     for (let i = 1; i <= 10; i++) {
-        soma += parseInt(cpf[i - 1]) * (12 - i);
+      soma += parseInt(cpf[i - 1]) * (12 - i);
     }
     resto = (soma * 10) % 11;
     if (resto === 10 || resto === 11) resto = 0;
     if (resto !== parseInt(cpf[10])) {
-        resultado.textContent = "CPF inválido!";
-        resultado.style.color = "red";
-        return false;
+      setCpfMessage("CPF inválido!");
+      return false;
     }
-
-    resultado.textContent = "CPF válido!";
-    resultado.style.color = "green";
+  
+    setCpfMessage("CPF válido!");
     return true;
-}
-
+  }
 
   return (
     <div className="container">
@@ -104,7 +119,8 @@ function validarCPF() {
             placeholder="**********"
             onChange={(e) => setPassword(e.target.value)}
           />
-           <div className="inputContainer">
+        </div>
+        <div className="inputContainer">
           <label htmlFor="confirmPassword">Confirmar Senha</label>
           <input
             type="password"
@@ -115,15 +131,24 @@ function validarCPF() {
           />
         </div>
 
-        <label for="cpf">Digite seu CPF:</label>
-        <input type="text" id="cpf" maxlength="14" onInput="formatarCPF()" onKeyUp="validarCPF()"/>
-        <span id="resultado"></span>
-        
+        <label htmlFor="cpf">Digite seu CPF:</label>
+        <input
+          type="text"
+          id="cpf"
+          maxLength="14"
+          value={cpf}
+          onChange={(e) => {
+            const cpfFormatado = formatarCPF(e.target.value);
+            setCpf(cpfFormatado);
+            validarCPF(cpfFormatado);
+          }}
+        />
+        <br />
+        <span style={{ color: cpfMessage === "CPF válido!" ? "green" : "red" }}>
+          {cpfMessage}
+        </span>
 
-
-
-        </div>
-        <p>As Credênciais estão certas?</p>
+        <p>As Credenciais estão certas?</p>
 
         <button onClick={handleSignUp} className="botao">
           Cadastrar
@@ -135,9 +160,7 @@ function validarCPF() {
         </div>
         <div className="footer">
           <p>Tem um campo e deseja registrar ele em nosso site</p>
-          
-          <Link to="/register_ADM" >Clique aqui</Link>
-
+          <Link to="/register_ADM">Clique aqui</Link>
         </div>
       </form>
     </div>

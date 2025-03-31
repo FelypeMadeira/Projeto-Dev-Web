@@ -1,30 +1,54 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import logo from "../../assets/logo.svg";
-import { auth } from "../../servicos/firebaseConfig";
-import "./styles.css";
+import { auth, database } from "../../servicos/firebaseConfig"; 
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { ref, get } from "firebase/database"; 
+import "./styles.css";
 
 export function Login() {
-  // Estados para email e senha
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
 
-  // Hook para autenticação com Firebase
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+
+  useEffect(() => {
+    if (user) {
+      const userId = user.user.uid;
+
+     
+      const userRef = ref(database, `usuarios/${userId}`);
+
+      get(userRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            const userData = snapshot.val();
+
+            
+            if (userData.cpf) {
+              navigate("/tela_inicial"); 
+            } else if (userData.cnpj) {
+              navigate("/tela_inicial_Adm"); 
+            } else {
+              setMessage("Erro ao identificar usuário!");
+            }
+          } else {
+            setMessage("Usuário não encontrado no banco de dados.");
+          }
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar usuário:", error);
+          setMessage("Erro ao buscar dados do usuário.");
+        });
+    }
+  }, [user, navigate]);
 
   function handleSignIn(e) {
     e.preventDefault();
     signInWithEmailAndPassword(email, password);
-  }
-
-  if (loading) {
-    return <p>Carregando...</p>;
-  }
-
-  if (user) {
-    console.log(user);
   }
 
   return (
@@ -58,13 +82,20 @@ export function Login() {
 
         <a href="#">Esqueceu sua Senha?</a>
 
-        <button className="botao" onClick={handleSignIn}>
-          Entrar
+        <button className="botao" onClick={handleSignIn} disabled={loading}>
+          {loading ? "Carregando..." : "Entrar"}
         </button>
+
+        {message && <p style={{ color: "red" }}>{message}</p>}
+
+        {error && <p style={{ color: "red" }}>Erro no login! Verifique seus dados.</p>}
 
         <div className="footer">
           <p>Não tem uma conta? </p>
           <Link to="/register">Faça sua conta</Link>
+
+          <br />
+          <Link to="/tela_inicial_Adm">vá para tela de adm</Link>
         </div>
       </form>
     </div>

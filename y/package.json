@@ -4,6 +4,14 @@
   "private": true,
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
   "keywords": [],
+  "homepage": "https://github.com/FelypeMadeira/Projeto-Dev-Web#readme",
+  "bugs": {
+    "url": "https://github.com/FelypeMadeira/Projeto-Dev-Web/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FelypeMadeira/Projeto-Dev-Web.git"
+  },
   "license": "ISC",
   "author": "",
   "type": "module",
