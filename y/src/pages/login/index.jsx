@@ -15,36 +15,47 @@ export function Login() {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
-  useEffect(() => {
-    if (user) {
-      const userId = user.user.uid;
-
-     
-      const userRef = ref(database, `usuarios/${userId}`);
-
-      get(userRef)
-        .then((snapshot) => {
-          if (snapshot.exists()) {
-            const userData = snapshot.val();
-
-            
-            if (userData.cpf) {
-              navigate("/tela_inicial"); 
-            } else if (userData.cnpj) {
-              navigate("/tela_inicial_Adm"); 
+    useEffect(() => {
+      if (user) {
+        const userId = user.user.uid;
+    
+        // Primeiro, busca na coleção "usuarios"
+        const userRef = ref(database, `usuarios/${userId}`);
+    
+        get(userRef)
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              const userData = snapshot.val();
+              if (userData.cpf) {
+                navigate("/tela_inicial"); // Cliente
+              } else {
+                setMessage("Erro ao identificar usuário!");
+              }
             } else {
-              setMessage("Erro ao identificar usuário!");
+              // Se não encontrar em "usuarios", busca na coleção "administradores"
+              const adminRef = ref(database, `administradores/${userId}/documento`);
+    
+              get(adminRef)
+                .then((adminSnapshot) => {
+                  if (adminSnapshot.exists()) {
+                    navigate("/tela_inicial_Adm"); // Administrador
+                  } else {
+                    setMessage("Usuário não encontrado no banco de dados.");
+                  }
+                })
+                .catch((error) => {
+                  console.error("Erro ao buscar administrador:", error);
+                  setMessage("Erro ao buscar dados do administrador.");
+                });
             }
-          } else {
-            setMessage("Usuário não encontrado no banco de dados.");
-          }
-        })
-        .catch((error) => {
-          console.error("Erro ao buscar usuário:", error);
-          setMessage("Erro ao buscar dados do usuário.");
-        });
-    }
-  }, [user, navigate]);
+          })
+          .catch((error) => {
+            console.error("Erro ao buscar usuário:", error);
+            setMessage("Erro ao buscar dados do usuário.");
+          });
+      }
+    }, [user, navigate]);
+    
 
   function handleSignIn(e) {
     e.preventDefault();
@@ -95,7 +106,7 @@ export function Login() {
           <Link to="/register">Faça sua conta</Link>
 
           <br />
-          <Link to="/tela_inicial_Adm">vá para tela de adm</Link>
+          
         </div>
       </form>
     </div>
