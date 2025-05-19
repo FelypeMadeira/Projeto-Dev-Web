@@ -1,0 +1,38 @@
+.avaliacao-container {
+    text-align: center;
+    padding: 2rem;
+    background: #f9f9f9;
+    margin: 2rem auto;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .botoes-avaliacao {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .botao-nota {
+    background-color: #28a745;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .botao-nota:hover {
+    background-color: #218838;
+  }
+  
+  .resultado-avaliacao {
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+  }
+  
