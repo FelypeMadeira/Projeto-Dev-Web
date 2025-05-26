@@ -7,6 +7,7 @@ import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import logo from "../../assets/logo.svg";
 
 export function ADM() {
+  const [telefone, setTelefone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -147,6 +148,16 @@ export function ADM() {
             id="confirmPassword"
             placeholder="**********"
             onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </div>
+        <div className="inputContainer">
+          <label htmlFor="telefone">Telefone para Contato</label>
+          <input
+           type="text"
+           name="telefone"
+           id="telefone"
+           placeholder="(00)00000-0000"
+           onChange={(e) => setTelefone(e.target.value)}
           />
         </div>
         <div className="inputContainer">

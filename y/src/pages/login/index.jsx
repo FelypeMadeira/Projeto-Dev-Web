@@ -4,7 +4,7 @@ import logo from "../../assets/logo.svg";
 import { auth, database } from "../../servicos/firebaseConfig"; 
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { ref, get } from "firebase/database"; 
-import "./styles.css";
+import "./tela_login.css";
 
 export function Login() {
   const [email, setEmail] = useState("");

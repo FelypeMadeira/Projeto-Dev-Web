@@ -1,5 +1,6 @@
 import './tela.css';
 import '../../assets/cifrao.png'
+import {Link , useNavigate} from "react-router-dom";
 export function TelaInicial(){
     return (
         <div>
@@ -58,6 +59,8 @@ export function TelaInicial(){
               </div>
             </div>
           </footer>
+
+          <Link to="/avaliacao">avalie o campo</Link>
     
         </div>
       );
