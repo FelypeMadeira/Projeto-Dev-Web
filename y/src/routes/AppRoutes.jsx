@@ -6,6 +6,8 @@ import { RegistroNovoCampo } from "../pages/pagina_RCampo";
 import { TelaInicial } from "../pages/tela_inicial";
 import { Adm } from "../pages/tela_inicial_Adm";
 import AvaliacaoCampo from "../pages/avaliacao";
+import Reserva from "../pages/Reserva";
+
 
 export function AppRoutes() {
   return (
@@ -18,6 +20,8 @@ export function AppRoutes() {
         <Route path="/tela_inicial" element={<TelaInicial />} />
         <Route path="/tela_inicial_Adm" element={<Adm />} />
         <Route path="/avaliacao/:campoId" element={<AvaliacaoCampo />} />
+        <Route path="/reserva" element={<Reserva />} />
+        
       </Routes>
     </BrowserRouter>
   );

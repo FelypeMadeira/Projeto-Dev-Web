@@ -1,0 +1,243 @@
+/* Adicione esta nova classe ao seu arquivo tela_reserva.css */
+.voltar-adm-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  width: 100%; /* Ocupa a largura total do formulário */
+  height: 48px;
+  background-color: #00bf63;
+  border-radius: 12px;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  margin-top: 20px; /* Adicionado um pouco de margem para separar do conteúdo acima */
+}
+
+.voltar-adm-button:hover {
+  background-color: #00994d; /* Um tom um pouco mais escuro para o hover */
+  opacity: 0.9;
+}
+
+/* Os estilos existentes para outros elementos devem permanecer aqui */
+/* Exemplo de estilos que você já pode ter: */
+.reserva-admin-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box; /* Garante que padding não adicione à largura/altura total */
+  font-family: Arial, sans-serif; /* Usando uma fonte comum para consistência */
+  overflow-y: auto; /* Adiciona scroll se o conteúdo for maior que a tela */
+  background-color: #f0f2f5; /* Um fundo suave para toda a tela */
+}
+
+.reserva-admin-container h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.nova-reserva-form,
+.reservas-existentes {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 600px; /* Limita a largura dos formulários/tabelas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nova-reserva-form h2,
+.reservas-existentes h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group select {
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+  width: calc(100% - 34px); /* Ajuste para o padding e borda */
+  height: 49px;
+  border: 1px solid #00bf63;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 19px;
+  color: #333;
+  background-color: #fff;
+  box-sizing: border-box; /* Garante que padding e borda não aumentem a largura total */
+}
+
+.form-group input[type="date"]:focus,
+.form-group input[type="time"]:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #008c4a; /* Cor mais escura ao focar */
+  box-shadow: 0 0 0 3px rgba(0, 191, 99, 0.2); /* Sombra suave ao focar */
+}
+
+/* Estilo para o botão de "Efetuar Reserva" */
+.nova-reserva-form button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  width: 100%; /* Ocupa a largura total do formulário */
+  height: 48px;
+  background-color: #00bf63;
+  border-radius: 12px;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.nova-reserva-form button:hover {
+  background-color: #008c4a; /* Escurece no hover */
+  opacity: 0.9;
+}
+
+/* Estilos para a tabela de reservas existentes */
+table {
+  width: 100%;
+  border-collapse: collapse; /* Garante que as bordas da célula se unam */
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  border: 1px solid #e0e0e0;
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+  word-break: break-all; /* Adicionado para quebrar palavras longas */
+}
+
+table th {
+  background-color: #f2f2f2;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase; /* Para títulos de coluna */
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Zebra striping para melhor legibilidade */
+}
+
+table tbody tr:hover {
+  background-color: #f0f0f0; /* Destaca a linha ao passar o mouse */
+}
+
+.reservas-existentes p {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+/* Estilo para o botão de voltar */
+.reserva-admin-container > button {
+  margin-top: 30px;
+  background-color: #6c757d; /* Uma cor neutra para o botão de voltar */
+  width: auto;
+  padding: 12px 25px;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.reserva-admin-container > button:hover {
+  background-color: #5a6268;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+  .nova-reserva-form,
+  .reservas-existentes {
+    padding: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .form-group input[type="date"],
+  .form-group input[type="time"],
+  .form-group select,
+  .nova-reserva-form button {
+    width: calc(100% - 32px); /* Ajuste para telas menores */
+  }
+
+  table th,
+  table td {
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reserva-admin-container h1 {
+    font-size: 28px;
+  }
+
+  .nova-reserva-form h2,
+  .reservas-existentes h2 {
+    font-size: 20px;
+  }
+
+  .form-group label {
+    font-size: 14px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .nova-reserva-form button {
+    padding: 12px;
+    height: 45px;
+    font-size: 14px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto; /* Permite scroll horizontal em tabelas grandes */
+    /* Removido white-space: nowrap para a tabela inteira para não forçar tudo numa linha */
+  }
+
+  table th,
+  table td {
+    /* Mantido white-space: normal para restaurar o wrapping de texto dentro das células */
+    white-space: normal;
+  }
+  /* Removida a duplicação dos estilos do .voltar-adm-button, pois já está definido globalmente */
+}
