@@ -1,0 +1,137 @@
+/* src/pages/contato/contato.css */
+
+/* Estilos gerais para o container da página */
+.contato-admin-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centraliza verticalmente */
+  min-height: 100vh; /* Garante que o container ocupe a altura total da viewport */
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif; /* Usando Inter, como recomendado */
+  background-color: #f0f2f5; /* Um fundo suave */
+  text-align: center; /* Centraliza o texto dentro do container */
+  color: #333;
+}
+
+/* Estilo para o título principal da página */
+.contato-admin-container h1 {
+  font-size: 2.5rem; /* Tamanho da fonte maior */
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Pequena sombra para destaque */
+}
+
+/* Estilo para a caixa de informações de contato */
+.contact-info {
+  background-color: #ffffff;
+  padding: 40px; /* Mais padding para espaçamento interno */
+  border-radius: 15px; /* Bordas mais arredondadas */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada */
+  margin-bottom: 30px;
+  max-width: 500px; /* Largura máxima para a caixa de contato */
+  width: 90%; /* Responsivo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilo para o parágrafo de instrução */
+.contact-info p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* Estilo para o número de telefone - DESTAQUE AQUI */
+.contact-info .phone-number {
+  font-size: 3.5rem; /* Tamanho da fonte bem grande */
+  font-weight: 900; /* Negrito extra para destaque */
+  color: #00bf63; /* Cor verde vibrante */
+  letter-spacing: 2px; /* Espaçamento entre as letras */
+  text-shadow: 2px 2px 4px rgba(0, 191, 99, 0.4); /* Sombra para o número */
+  margin: 15px 0; /* Margem superior e inferior */
+}
+
+.contact-info .phone-number a {
+  text-decoration: none; /* Remove sublinhado padrão do link */
+  color: inherit; /* Mantém a cor verde definida acima */
+  transition: color 0.3s ease;
+}
+
+.contact-info .phone-number a:hover {
+  color: #008c4a; /* Um tom mais escuro no hover */
+}
+
+/* Estilo para mensagens de erro */
+.error-message {
+  color: #dc3545; /* Vermelho para erros */
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+/* Estilo para o botão de voltar (reutiliza a classe do seu outro CSS) */
+.voltar-adm-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  width: 90%; /* Ajustado para ser responsivo, pode ser 100% da caixa principal se desejar */
+  max-width: 300px; /* Largura máxima para o botão */
+  height: 48px;
+  background-color: #6c757d; /* Cor neutra para o botão de voltar */
+  border-radius: 12px;
+  font-size: 1.1rem;
+  line-height: 22px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  margin-top: 30px; /* Espaçamento do conteúdo acima */
+}
+
+.voltar-adm-button:hover {
+  background-color: #5a6268;
+  opacity: 0.9;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+  .contato-admin-container h1 {
+    font-size: 2rem;
+  }
+
+  .contact-info {
+    padding: 30px;
+  }
+
+  .contact-info .phone-number {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contato-admin-container h1 {
+    font-size: 1.8rem;
+  }
+
+  .contact-info {
+    padding: 20px;
+  }
+
+  .contact-info .phone-number {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+
+  .voltar-adm-button {
+    height: 45px;
+    font-size: 1rem;
+  }
+}

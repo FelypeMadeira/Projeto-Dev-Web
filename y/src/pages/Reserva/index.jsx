@@ -37,7 +37,7 @@ const Reserva = () => {
         setCampos([]);
       }
 
-      // Busca nome dos Usuários
+      
       const usuariosRef = ref(database, 'usuarios');
       const usuariosSnapshot = await get(usuariosRef);
       if (usuariosSnapshot.exists()) {
@@ -258,7 +258,6 @@ const Reserva = () => {
               <th>Cliente</th>
               <th>Categoria</th>
               <th>Admin Responsável</th>
-              {/* Adicione outras colunas se necessário (e.g., ações como editar/cancelar) */}
             </tr>
           </thead>
           <tbody>

@@ -1,0 +1,182 @@
+/* Estilos gerais para o container principal da página Adm */
+.adm-container {
+    width: 100vw; /* Largura total da viewport */
+    height: 100vh; /* Altura total da viewport */
+    display: flex;
+    flex-direction: column; /* Organiza os itens em coluna */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    padding: 20px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura/altura total */
+    font-family: 'Inter', sans-serif; /* Usando a fonte Inter para consistência */
+    overflow-y: auto; /* Adiciona rolagem vertical se o conteúdo exceder a altura da tela */
+    background-color: #f0f2f5; /* Um fundo suave para toda a tela */
+    color: #333; /* Cor de texto padrão */
+}
+
+/* Estilo para o título principal da página */
+.adm-container h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Estilos para os botões do painel do administrador */
+.adm-container button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    width: 100%; /* Ocupa a largura total da seção */
+    max-width: 600px; /* Limita a largura máxima do botão */
+    height: 48px;
+    background-color: #00bf63;
+    border-radius: 12px;
+    font-size: 18px;
+    line-height: 22px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    margin-bottom: 15px; /* Margem entre os botões */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para os botões */
+}
+
+.adm-container button:hover {
+    background-color: #00994d; /* Tom um pouco mais escuro para o hover */
+    opacity: 0.9;
+}
+
+/* Estilos para a seção de reservas existentes */
+.reservas-existentes {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 30px; /* Margem para separar dos botões */
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 800px; /* Largura maior para a tabela de reservas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* Permite rolagem horizontal em telas menores */
+}
+
+/* Título da seção de reservas existentes */
+.reservas-existentes h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* Estilos para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Garante que as bordas da célula se unam */
+    margin-top: 20px;
+}
+
+table th,
+table td {
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+    word-break: break-word; /* Quebra palavras longas para evitar overflow */
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase; /* Para títulos de coluna */
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra striping para melhor legibilidade */
+}
+
+table tbody tr:hover {
+    background-color: #f0f0f0; /* Destaca a linha ao passar o mouse */
+}
+
+/* Mensagem de "Nenhuma reserva encontrada" */
+.reservas-existentes p {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+    .adm-container {
+        padding: 15px;
+    }
+
+    .adm-container h1 {
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+
+    .adm-container button {
+        height: 45px;
+        font-size: 16px;
+        max-width: 100%; /* Permite que os botões ocupem 100% da largura em telas menores */
+    }
+
+    .reservas-existentes {
+        padding: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        max-width: 100%; /* Permite que a tabela ocupe 100% da largura em telas menores */
+    }
+
+    .reservas-existentes h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    table th,
+    table td {
+        padding: 10px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .adm-container h1 {
+        font-size: 24px;
+    }
+
+    .adm-container button {
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .reservas-existentes {
+        padding: 15px;
+    }
+
+    .reservas-existentes h2 {
+        font-size: 18px;
+    }
+
+    table {
+        /* Para telas muito pequenas, a tabela pode ficar muito estreita.
+           A propriedade overflow-x: auto no .reservas-existentes já ajuda.
+           Aqui, garantimos que o conteúdo da célula quebre para se ajustar. */
+        display: block; /* Garante que o overflow-x funcione na tabela */
+    }
+
+    table th,
+    table td {
+        padding: 8px;
+        font-size: 10px;
+        white-space: normal; /* Permite que o texto quebre */
+    }
+}

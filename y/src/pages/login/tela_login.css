@@ -1,115 +1,225 @@
-.container{
+/* Estilos gerais para o container principal da página */
+.container {
     width: 100vw;
     height: 100vh;
-
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    font-family: 'Inter', sans-serif; /* Usando a fonte Inter para consistência */
+    background-color: #f0f2f5; /* Fundo suave para a página inteira */
+    padding: 20px; /* Adicionado padding para telas menores */
+    box-sizing: border-box; /* Garante que o padding não aumente a largura/altura total */
 }
- .container .header{
+
+/* Estilos para o cabeçalho, onde fica o logo e a frase "Facilitando o seu lazer" */
+.container .header {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 40px;
+    background-color: white; /* Define o fundo como branco para remover a faixa verde */
+    padding: 25px; /* Adicionado padding para um melhor visual */
+    border-radius: 12px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    width: 100%;
+    max-width: 580px; /* Alinhando com a largura do formulário abaixo */
+    box-sizing: border-box;
 }
-.logo{
+
+/* Estilo para a imagem do logo */
+.logo {
     width: 290px;
     height: auto;
     border-radius: 8%;
-    
 }
-.container .header span{
-    padding-top:8px ;
+
+/* Estilo para o texto "Facilitando o seu lazer" */
+.container .header span {
+    padding-top: 15px; /* Aumentado um pouco o padding para separar do logo */
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
+    color: #333; /* Cor do texto para garantir visibilidade */
+    text-align: center;
 }
-.container form{
+
+/* Estilos para o formulário */
+.container form {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    flex-direction: column;
+    background-color: #fff; /* Fundo branco para o formulário */
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px; /* Limita a largura do formulário */
+    box-sizing: border-box;
 }
-.container form .inputContainer{
+
+/* Container para cada campo de input (label + input) */
+.container form .inputContainer {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
-    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%; /* Ocupa a largura total do formulário */
 }
-.container form .inputContainer label{
-    font-weight: 400;
-    font-size: 16px; 
-    line-height: 19px;
-    margin-bottom: 8px;
-    
 
-}
-.container form .inputContainer input{
-    display: flex;
-    flex-direction: row;
-    padding: 16px;
-    width: 520px;
-    height: 49px;
-
-    border: 1px solid #00bf63;
-    border-radius: 12px; 
-}
-.container form a{
+/* Estilos para as labels dos inputs */
+.container form .inputContainer label {
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
+    margin-bottom: 8px;
+    color: #555;
+}
 
+/* Estilos para os inputs */
+.container form .inputContainer input {
+    padding: 16px;
+    width: 100%; /* Ajustado para 100% da largura do inputContainer */
+    height: 49px;
+    border: 1px solid #00bf63;
+    border-radius: 12px;
+    font-size: 16px;
+    line-height: 19px;
+    color: #333;
+    box-sizing: border-box; /* Garante que padding e borda não aumentem a largura total */
+}
+
+/* Estilo de foco para os inputs */
+.container form .inputContainer input:focus {
+    outline: none;
+    border-color: #008c4a;
+    box-shadow: 0 0 0 3px rgba(0, 191, 99, 0.2);
+}
+
+/* Estilo para links genéricos dentro do formulário (ex: "Esqueceu sua senha?") */
+.container form a {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
     padding-top: 16px;
     padding-bottom: 16px;
     color: #00bf63;
+    text-decoration: none; /* Remove o sublinhado padrão */
+    transition: text-decoration 0.3s ease;
 }
-.container form .botao{
+
+.container form a:hover {
+    text-decoration: underline; /* Adiciona sublinhado no hover */
+}
+
+/* Estilos para o botão principal do formulário */
+.container form .botao {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    
     gap: 8px;
     border: none;
-
-    width: 520px;
+    width: 100%; /* Ocupa a largura total do formulário */
     height: 48px;
-
     background-color: #00bf63;
     border-radius: 12px;
-
     font-size: 18px;
     line-height: 22px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap:15px;
     color: #ffff;
-
-
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    margin-top: 20px;
 }
-.container form .botao:hover{
+
+.container form .botao:hover {
     cursor: pointer;
     opacity: 0.8;
+    background-color: #008c4a; /* Escurece no hover */
 }
 
-.container form .footer{
+/* Estilos para o rodapé do formulário (ex: "Não tem uma conta?") */
+.container form .footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap:10px;
-
+    gap: 10px;
+    margin-top: 20px;
 }
-.container form .footer p{
+
+.container form .footer p {
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
     color: #000;
 }
-.container form .footer a{
+
+.container form .footer a {
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
-    text-decoration-line: underline ;
+    text-decoration-line: underline;
     color: #00bf63;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+    .container .header {
+        padding: 20px;
+        max-width: 500px;
+    }
+
+    .container form {
+        padding: 25px;
+        max-width: 500px;
+    }
+
+    .container form .inputContainer input,
+    .container form .botao {
+        width: 100%; /* Garante que ocupem a largura total */
+    }
+
+    .logo {
+        width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    .container .header {
+        padding: 15px;
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        width: 200px; /* Ajusta o tamanho do logo para telas menores */
+    }
+
+    .container .header span {
+        font-size: 18px;
+        padding-top: 10px;
+    }
+
+    .container form {
+        padding: 20px;
+    }
+
+    .container form .inputContainer label {
+        font-size: 14px;
+    }
+
+    .container form .inputContainer input,
+    .container form .botao {
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .container form .footer p,
+    .container form .footer a {
+        font-size: 14px;
+    }
 }

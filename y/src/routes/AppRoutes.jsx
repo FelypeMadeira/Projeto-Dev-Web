@@ -7,7 +7,7 @@ import { TelaInicial } from "../pages/tela_inicial";
 import { Adm } from "../pages/tela_inicial_Adm";
 import AvaliacaoCampo from "../pages/avaliacao";
 import Reserva from "../pages/Reserva";
-
+import ContatoAdmin from "../pages/contato"; // Importe o componente ContatoAdmin
 
 export function AppRoutes() {
   return (
@@ -21,7 +21,7 @@ export function AppRoutes() {
         <Route path="/tela_inicial_Adm" element={<Adm />} />
         <Route path="/avaliacao/:campoId" element={<AvaliacaoCampo />} />
         <Route path="/reserva" element={<Reserva />} />
-        
+        <Route path="/contato" element={<ContatoAdmin />} /> 
       </Routes>
     </BrowserRouter>
   );

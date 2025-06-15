@@ -230,14 +230,14 @@ table tbody tr:hover {
 
   table {
     display: block;
-    overflow-x: auto; /* Permite scroll horizontal em tabelas grandes */
-    /* Removido white-space: nowrap para a tabela inteira para não forçar tudo numa linha */
+    overflow-x: auto; 
+   
   }
 
   table th,
   table td {
-    /* Mantido white-space: normal para restaurar o wrapping de texto dentro das células */
+    
     white-space: normal;
   }
-  /* Removida a duplicação dos estilos do .voltar-adm-button, pois já está definido globalmente */
+  
 }
